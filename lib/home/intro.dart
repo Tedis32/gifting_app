@@ -39,22 +39,18 @@ class Intro extends StatelessWidget {
                 icon: const Icon(Icons.arrow_forward_rounded),
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => BudgetList(
-                          title: "Select Your Budget!",
-                          numberValue: "",
-                        ),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BudgetList(
+                        title: "Select Your Budget!",
+                        numberValue: "",
+                      ),
+                    ),
+                  );
                 },
               ),
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.83,
-            left: MediaQuery.of(context).size.width * 0.1,
-            child: const CustomBackButton(),
-          )
         ],
       ),
     );
