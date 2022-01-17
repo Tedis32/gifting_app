@@ -13,6 +13,7 @@ class GenderSelector extends StatefulWidget {
 }
 
 class _GenderSelectorState extends State<GenderSelector> {
+  TextEditingController genderController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,25 +39,44 @@ class _GenderSelectorState extends State<GenderSelector> {
                   GridItem(
                     "Male",
                     Colors.blue,
-                    const Icon(Icons.male),
+                    const Icon(
+                      Icons.male,
+                      size: 70,
+                    ),
                   ),
                   GridItem(
                     "Female",
                     Colors.pink,
-                    const Icon(Icons.female),
+                    const Icon(
+                      Icons.female,
+                      size: 70,
+                    ),
                   ),
                 ],
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.only(top: 30),
+            ),
             Container(
-              padding: const EdgeInsets.only(top: 25),
-              height: 150,
-              width: 120,
-              child: GridItem(
-                "Other",
-                Colors.grey,
-                const Icon(
-                  Icons.search,
+              padding: EdgeInsets.only(
+                  left: MediaQuery.of(context).size.width * 0.07,
+                  right: MediaQuery.of(context).size.width * 0.13),
+              alignment: Alignment.bottomLeft,
+              child: TextField(
+                cursorColor: Colors.black,
+                controller: genderController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.pink),
+                  ),
+                  label: Text(
+                    "Or enter your gender here...",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.amber),
+                  ),
                 ),
               ),
             ),
@@ -64,8 +84,8 @@ class _GenderSelectorState extends State<GenderSelector> {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * 0.1,
-                  top: MediaQuery.of(context).size.height * 0.07),
-              child: CustomBackButton(),
+                  top: MediaQuery.of(context).size.height * 0.14),
+              child: const CustomBackButton(),
             ),
           ],
         ),
@@ -79,21 +99,24 @@ class _GenderSelectorState extends State<GenderSelector> {
         Provider.of<Exportable>(context, listen: false).gender = s;
         print(Provider.of<Exportable>(context, listen: false).gender);
       },
-      child: Card(
-        color: colour,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            color: colour, borderRadius: BorderRadius.circular(100)),
         child: Center(
           child: RichText(
             text: TextSpan(
               children: [
-                WidgetSpan(
+                /* WidgetSpan(
                   child: Center(
                     child: Text(
                       s + "\n",
                       style: GoogleFonts.poppins(
-                          color: Colors.black87, fontWeight: FontWeight.bold),
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20),
                     ),
                   ),
-                ),
+                ), */
                 WidgetSpan(
                   child: Center(
                     child: icon,
