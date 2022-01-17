@@ -20,8 +20,8 @@ class StartScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.3,
             width: MediaQuery.of(context).size.width * 0.6,
             child: InkWell(
-              splashColor: Colors.yellow[200],
-              highlightColor: Colors.yellow[200],
+              splashColor: Colors.red[100],
+              highlightColor: Colors.red[100],
               customBorder: const CircleBorder(side: BorderSide.none),
               onTap: () {
                 Navigator.pushReplacement(

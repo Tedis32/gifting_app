@@ -16,6 +16,7 @@ class _BudgetButtonState extends State<BudgetButton> {
     return SizedBox(
       child: DecoratedBox(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(90),
           color: Colors.red[100],
           boxShadow: const [
             BoxShadow(
@@ -42,7 +43,7 @@ class _BudgetButtonState extends State<BudgetButton> {
                 : Text(
                     widget.constValue.toString(),
                     style:
-                        GoogleFonts.alata(fontSize: 25, color: Colors.black87),
+                        GoogleFonts.poppins(fontSize: 25, color: Colors.black87),
                   ),
           ),
         ),

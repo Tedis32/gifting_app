@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:gifting_app/home/intro.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/drawer.dart';
-import 'package:gifting_app/models/listviews/budget.dart';
+import 'package:gifting_app/models/listviews/tiled_selectors/budget.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
 
 import 'package:google_fonts/google_fonts.dart';

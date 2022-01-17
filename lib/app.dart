@@ -6,7 +6,7 @@ import 'package:gifting_app/home/start_screen.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
 import 'package:provider/provider.dart';
 
-import 'models/listviews/budget.dart';
+import 'models/listviews/tiled_selectors/budget.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
           theme: ThemeData(
-            canvasColor: Colors.yellow[50],
+            canvasColor: Colors.red[50],
             primaryTextTheme: const TextTheme(
                 bodyText1: TextStyle(color: Colors.black),
                 bodyText2: TextStyle(color: Colors.black),

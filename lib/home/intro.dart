@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gifting_app/models/clickables/backbutton.dart';
-import 'package:gifting_app/models/listviews/budget.dart';
+import 'package:gifting_app/models/listviews/tiled_selectors/budget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Intro extends StatelessWidget {

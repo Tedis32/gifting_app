@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gifting_app/exportable.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/clickables/backbutton.dart';
 import 'package:gifting_app/models/clickables/budgetbutton.dart';
@@ -58,6 +60,8 @@ class _BudgetListState extends State<BudgetList> {
                 height: MediaQuery.of(context).size.height * 1,
                 child: Stack(
                   children: [
+                    // Output number
+                    //
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.15,
                       right: MediaQuery.of(context).size.width * 0.05,
@@ -66,28 +70,33 @@ class _BudgetListState extends State<BudgetList> {
                           Provider.of<BudgetProvider>(context, listen: true)
                               .getValue()
                               .toString(),
-                          style: const TextStyle(
+                          style: GoogleFonts.poppins(
                             color: Colors.black87,
                             fontSize: 40,
                           ),
                         ),
                       ),
                     ),
+                    // GridView
+                    //
                     Positioned(
-                      top: MediaQuery.of(context).size.height * 0.125,
+                      top: MediaQuery.of(context).size.height * 0.23,
                       child: Container(
                         padding: const EdgeInsets.all(50),
                         color: Colors.transparent,
                         width: MediaQuery.of(context).size.width * 1,
                         child: GridView.count(
-                          mainAxisSpacing: 0,
-                          crossAxisSpacing: 0,
+                          padding: const EdgeInsets.all(1),
+                          mainAxisSpacing: 3,
+                          crossAxisSpacing: 3,
                           crossAxisCount: 3,
                           shrinkWrap: true,
                           children: budgetButtons,
                         ),
                       ),
                     ),
+                    // Forward Button
+                    //
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.83,
                       right: MediaQuery.of(context).size.width * 0.1,
@@ -102,17 +111,36 @@ class _BudgetListState extends State<BudgetList> {
                           iconSize: 40,
                           icon: const Icon(Icons.arrow_forward_rounded),
                           onPressed: () {
-                            Navigator.push(
+                            if (Provider.of<BudgetProvider>(context,
+                                    listen: false)
+                                .value
+                                .isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg: "Please enter your budget",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1);
+                            } else {
+                              Provider.of<Exportable>(context, listen: false)
+                                      .budget =
+                                  int.parse(Provider.of<BudgetProvider>(context,
+                                          listen: false)
+                                      .value);
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => const AgePicker(
                                     title: "What is their age?",
                                   ),
-                                ));
+                                ),
+                              );
+                            }
                           },
                         ),
                       ),
                     ),
+                    // Back Button
+                    //
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.83,
                       left: MediaQuery.of(context).size.width * 0.1,
