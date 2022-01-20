@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gifting_app/models/appbar.dart';
-import 'package:gifting_app/models/clickables/backbutton.dart';
-import 'package:gifting_app/models/clickables/selected_age.dart';
-import 'package:gifting_app/models/listviews/tiled_selectors/gender_selector.dart';
+import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
+import 'package:gifting_app/models/exportable_content/clickables/selected_age.dart';
+import 'package:gifting_app/models/exportable_content/listviews/tiled_selectors/gender_selector.dart';
 import 'package:provider/provider.dart';
 import 'package:vertical_picker/vertical_picker.dart';
 
-import '../../exportable.dart';
+import '../../../exportable.dart';
+
 
 class AgePicker extends StatefulWidget {
   const AgePicker({Key? key, required this.title}) : super(key: key);
@@ -30,14 +31,14 @@ class _AgePickerState extends State<AgePicker> {
         child: CustomAppBar(title: widget.title),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          color: Colors.red[50],
+        child: SizedBox(
           child: Stack(
             children: [
               Positioned(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 1,
                   child: VerticalPicker(
+                    borderColor: Colors.pink[50],
                     onSelectedChanged: (indexSelected) {
                       try {
                         Provider.of<Exportable>(context, listen: false)

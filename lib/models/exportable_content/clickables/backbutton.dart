@@ -13,11 +13,11 @@ class _CustomBackButtonState extends State<CustomBackButton> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-        color: Colors.black87,
+        color: Colors.white,
         shape: BoxShape.circle,
       ),
       child: IconButton(
-        color: Colors.white,
+        color: Colors.black,
         splashRadius: 10,
         iconSize: 40,
         icon: const Icon(Icons.arrow_back_rounded),

@@ -1,12 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gifting_app/exportable.dart';
-import 'package:gifting_app/home/home.dart';
 import 'package:gifting_app/home/start_screen.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
 import 'package:provider/provider.dart';
-
-import 'models/listviews/tiled_selectors/budget.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -15,14 +11,15 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => Exportable(0, 0, 0, "")),
+        ChangeNotifierProvider(
+            create: (_) => Exportable(0, 0, 0, "", "", true)),
         ChangeNotifierProvider(
           create: (_) => BudgetProvider(),
         ),
       ],
       child: MaterialApp(
           theme: ThemeData(
-            canvasColor: Colors.red[50],
+            canvasColor: Colors.pink[200],
             primaryTextTheme: const TextTheme(
                 bodyText1: TextStyle(color: Colors.black),
                 bodyText2: TextStyle(color: Colors.black),

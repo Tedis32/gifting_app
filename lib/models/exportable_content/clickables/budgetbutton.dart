@@ -17,16 +17,10 @@ class _BudgetButtonState extends State<BudgetButton> {
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(90),
-          color: Colors.red[100],
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black38,
-              spreadRadius: 0.3,
-            ),
-          ],
+          color: Colors.pink[50],
         ),
         child: InkWell(
-          splashColor: Colors.black,
+          splashColor: Colors.transparent,
           onTap: () {
             if (widget.constValue == "C") {
               Provider.of<BudgetProvider>(context, listen: false).clearValues();
@@ -42,8 +36,8 @@ class _BudgetButtonState extends State<BudgetButton> {
                 ? const Icon(Icons.backspace)
                 : Text(
                     widget.constValue.toString(),
-                    style:
-                        GoogleFonts.poppins(fontSize: 25, color: Colors.black87),
+                    style: GoogleFonts.poppins(
+                        fontSize: 25, color: Colors.black87),
                   ),
           ),
         ),

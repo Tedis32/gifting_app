@@ -38,6 +38,11 @@ dependencies:
   fluttertoast: ^8.0.8
   dotted_border: ^2.0.0+2
   vertical_picker: ^0.0.1
+  icon: ^2.2.1
+  animated_text_kit: ^4.2.1
+  flutter_glow: ^0.2.0
+  eva_icons_flutter: ^3.0.2
+  material_design_icons_flutter: 5.0.5955-rc.1
 
 dev_dependencies:
   flutter_test:

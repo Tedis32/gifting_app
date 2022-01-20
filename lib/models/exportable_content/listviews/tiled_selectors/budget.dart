@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gifting_app/exportable.dart';
 import 'package:gifting_app/models/appbar.dart';
-import 'package:gifting_app/models/clickables/backbutton.dart';
-import 'package:gifting_app/models/clickables/budgetbutton.dart';
-import 'package:gifting_app/models/listviews/agepicker.dart';
+import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
+import 'package:gifting_app/models/exportable_content/clickables/budgetbutton.dart';
+import 'package:gifting_app/models/exportable_content/intermediary_screens/support_local.dart';
+import 'package:gifting_app/models/exportable_content/listviews/agepicker.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -56,7 +57,6 @@ class _BudgetListState extends State<BudgetList> {
             ),
             body: SingleChildScrollView(
               child: Container(
-                color: Colors.red[50],
                 height: MediaQuery.of(context).size.height * 1,
                 child: Stack(
                   children: [
@@ -129,8 +129,8 @@ class _BudgetListState extends State<BudgetList> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const AgePicker(
-                                    title: "What is their age?",
+                                  builder: (context) => const SupportLocal(
+                                    title: "Would you prefer to shop locally?",
                                   ),
                                 ),
                               );

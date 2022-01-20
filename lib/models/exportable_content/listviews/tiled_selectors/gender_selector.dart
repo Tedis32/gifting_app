@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gifting_app/exportable.dart';
+import 'package:gifting_app/home/home.dart';
 import 'package:gifting_app/models/appbar.dart';
-import 'package:gifting_app/models/clickables/backbutton.dart';
+import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'occasion.dart';
 
 class GenderSelector extends StatefulWidget {
   const GenderSelector({Key? key, required this.title}) : super(key: key);
@@ -38,10 +42,11 @@ class _GenderSelectorState extends State<GenderSelector> {
                 children: [
                   GridItem(
                     "Male",
-                    Colors.blue,
+                    Colors.indigo,
                     const Icon(
                       Icons.male,
                       size: 70,
+                      color: Colors.white,
                     ),
                   ),
                   GridItem(
@@ -50,6 +55,7 @@ class _GenderSelectorState extends State<GenderSelector> {
                     const Icon(
                       Icons.female,
                       size: 70,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -64,29 +70,78 @@ class _GenderSelectorState extends State<GenderSelector> {
                   right: MediaQuery.of(context).size.width * 0.13),
               alignment: Alignment.bottomLeft,
               child: TextField(
-                cursorColor: Colors.black,
+                cursorColor: Colors.white,
                 controller: genderController,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.pink),
-                  ),
                   label: Text(
-                    "Or enter your gender here...",
-                    style: TextStyle(color: Colors.black),
+                    "Or enter their gender here...",
+                    style: TextStyle(color: Colors.white54),
+                  ),
+                  enabled: true,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white30,
+                    ),
+                  ),
+                  disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.amber),
+                    borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
               ),
             ),
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.1,
-                  top: MediaQuery.of(context).size.height * 0.14),
-              child: const CustomBackButton(),
+            //Back Button
+            Row(
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.1,
+                      top: MediaQuery.of(context).size.height * 0.14),
+                  child: const CustomBackButton(),
+                ),
+                // Forward Button
+                //
+                Container(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width * 0.5,
+                      top: MediaQuery.of(context).size.height * 0.14),
+                  child: DecoratedBox(
+                    decoration: const BoxDecoration(
+                      color: Colors.black87,
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      color: Colors.white,
+                      splashRadius: 10,
+                      iconSize: 40,
+                      icon: const Icon(Icons.arrow_forward_rounded),
+                      onPressed: () {
+                        Provider.of<Exportable>(context, listen: false).gender =
+                            genderController.text;
+                        genderController.text.isEmpty
+                            ? Fluttertoast.showToast(
+                                msg: 'Please select or enter a gender',
+                                toastLength: Toast.LENGTH_SHORT,
+                                timeInSecForIosWeb: 1)
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Occasion(
+                                    title: 'What\'s the occasion?',
+                                  ),
+                                ),
+                              );
+                      },
+                    ),
+                  ),
+                ),
+              ],
             ),
+            // Back Button
+            //
           ],
         ),
       ),
@@ -97,7 +152,14 @@ class _GenderSelectorState extends State<GenderSelector> {
     return InkWell(
       onTap: () {
         Provider.of<Exportable>(context, listen: false).gender = s;
-        print(Provider.of<Exportable>(context, listen: false).gender);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Home(
+              title: 'Home',
+            ),
+          ),
+        );
       },
       child: DecoratedBox(
         decoration: BoxDecoration(

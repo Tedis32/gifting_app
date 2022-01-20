@@ -22,7 +22,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       title: Center(
         child: Text(
           widget.title,
-          style: GoogleFonts.alata(color: Colors.black54),
+          style: GoogleFonts.alata(color: Colors.white),
         ),
       ),
     );
