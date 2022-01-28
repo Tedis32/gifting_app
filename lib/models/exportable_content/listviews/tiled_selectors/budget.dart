@@ -80,7 +80,7 @@ class _BudgetListState extends State<BudgetList> {
                     // GridView
                     //
                     Positioned(
-                      top: MediaQuery.of(context).size.height * 0.23,
+                      top: MediaQuery.of(context).size.height * 0.18,
                       child: Container(
                         padding: const EdgeInsets.all(50),
                         color: Colors.transparent,
@@ -112,9 +112,14 @@ class _BudgetListState extends State<BudgetList> {
                           icon: const Icon(Icons.arrow_forward_rounded),
                           onPressed: () {
                             if (Provider.of<BudgetProvider>(context,
-                                    listen: false)
-                                .value
-                                .isEmpty) {
+                                        listen: false)
+                                    .value
+                                    // ignore: unrelated_type_equality_checks
+                                    .isEmpty ||
+                                Provider.of<BudgetProvider>(context,
+                                            listen: false)
+                                        .value ==
+                                    0.toString()) {
                               Fluttertoast.showToast(
                                   msg: "Please enter your budget",
                                   toastLength: Toast.LENGTH_SHORT,
