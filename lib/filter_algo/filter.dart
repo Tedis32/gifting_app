@@ -61,12 +61,6 @@ class Filter {
             gender: randomGender(),
             occasion: randomOccasion()),
       );
-      print(
-        mockValues[i].price.toString() +
-            mockValues[i].ageCategory +
-            mockValues[i].gender +
-            mockValues[i].occasion,
-      );
     }
   }
 
@@ -76,6 +70,21 @@ class Filter {
 
   //Now generating random data is complete
   // FILTER TIME:
-  
-  
+  List<MockValues> filterValues(Exportable exportable) {
+    List<MockValues> filtered = [];
+
+    generateMockValues();
+    for (var i = 0; i < mockValues.length; i++) {
+      if (mockValues[i].price <= exportable.budget && mockValues[i].gender == exportable.gender) {
+        filtered.add(mockValues[i]);
+        print(
+          mockValues[i].price.toString() + "\t" +
+              mockValues[i].ageCategory + "\t" +
+              mockValues[i].gender + "\t" +
+              mockValues[i].occasion,
+        );
+      }
+    }
+    return filtered;
+  }
 }

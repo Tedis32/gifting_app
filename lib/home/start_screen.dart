@@ -6,6 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 
+import '../exportable.dart';
+
 class StartScreen extends StatelessWidget {
   const StartScreen({Key? key}) : super(key: key);
 
@@ -30,7 +32,8 @@ class StartScreen extends StatelessWidget {
                 highlightColor: Colors.red[100],
                 customBorder: const CircleBorder(side: BorderSide.none),
                 onTap: () {
-                  Filter().generateMockValues();
+                  Exportable e = Exportable(10, 10, 20,"Male", "Birthday", true);
+                  Filter().filterValues(e);
                   /* Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
