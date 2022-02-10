@@ -53,7 +53,7 @@ class Filter {
   List<MockValues> mockValues = [];
 
   void generateMockValues() {
-    for (var i = 0; i < 25; i++) {
+    for (var i = 0; i < 500; i++) {
       mockValues.add(
         MockValues(
             price: randomPrice(),
@@ -74,5 +74,8 @@ class Filter {
   Filter();
   // TO DO: Implement online database query.
 
+  //Now generating random data is complete
+  // FILTER TIME:
+  
   
 }
