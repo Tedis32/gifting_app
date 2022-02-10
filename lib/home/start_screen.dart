@@ -32,14 +32,12 @@ class StartScreen extends StatelessWidget {
                 highlightColor: Colors.red[100],
                 customBorder: const CircleBorder(side: BorderSide.none),
                 onTap: () {
-                  Exportable e = Exportable(10, 10, 20,"Male", "Birthday", true);
-                  Filter().filterValues(e);
-                  /* Navigator.pushReplacement(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Intro(),
                     ),
-                  ); */
+                  );
                 },
                 child: Center(
                   child: GlowText(

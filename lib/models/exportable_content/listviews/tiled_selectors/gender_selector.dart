@@ -4,6 +4,7 @@ import 'package:gifting_app/exportable.dart';
 import 'package:gifting_app/home/home.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
+import 'package:gifting_app/models/final%20gift%20selection%20screen/generated_gifts.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +36,7 @@ class _GenderSelectorState extends State<GenderSelector> {
               padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height * 0.25),
               child: GridView.count(
-                crossAxisCount: 2,
+                crossAxisCount: 3,
                 shrinkWrap: true,
                 crossAxisSpacing: 10,
                 padding: const EdgeInsets.only(left: 15, right: 15),
@@ -58,40 +59,22 @@ class _GenderSelectorState extends State<GenderSelector> {
                       color: Colors.white,
                     ),
                   ),
+                  GridItem(
+                    "Unisex",
+                    Colors.grey,
+                    const Icon(
+                      Icons.person,
+                      size: 70,
+                      color: Colors.white,
+                    ),
+                  ),
                 ],
               ),
             ),
             const Padding(
               padding: EdgeInsets.only(top: 30),
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width * 0.07,
-                  right: MediaQuery.of(context).size.width * 0.13),
-              alignment: Alignment.bottomLeft,
-              child: TextField(
-                cursorColor: Colors.white,
-                controller: genderController,
-                decoration: const InputDecoration(
-                  label: Text(
-                    "Or enter their gender here...",
-                    style: TextStyle(color: Colors.white54),
-                  ),
-                  enabled: true,
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white30,
-                    ),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
+
             //Back Button
             Row(
               children: [
@@ -126,14 +109,15 @@ class _GenderSelectorState extends State<GenderSelector> {
                                 msg: 'Please select or enter a gender',
                                 toastLength: Toast.LENGTH_SHORT,
                                 timeInSecForIosWeb: 1)
-                            : Navigator.push(
+                            : Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const Occasion(
-                                    title: 'What\'s the occasion?',
+                                  builder: (context) =>
+                                      const GeneratedGiftsScreen(
+                                    title: 'Here\'s what we got',
                                   ),
                                 ),
-                              );
+                                (route) => false);
                       },
                     ),
                   ),
@@ -152,14 +136,14 @@ class _GenderSelectorState extends State<GenderSelector> {
     return InkWell(
       onTap: () {
         Provider.of<Exportable>(context, listen: false).gender = s;
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Home(
-              title: 'Home',
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const GeneratedGiftsScreen(
+                title: 'Here\'s what we got',
+              ),
             ),
-          ),
-        );
+            (route) => false);
       },
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -168,17 +152,6 @@ class _GenderSelectorState extends State<GenderSelector> {
           child: RichText(
             text: TextSpan(
               children: [
-                /* WidgetSpan(
-                  child: Center(
-                    child: Text(
-                      s + "\n",
-                      style: GoogleFonts.poppins(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 20),
-                    ),
-                  ),
-                ), */
                 WidgetSpan(
                   child: Center(
                     child: icon,
