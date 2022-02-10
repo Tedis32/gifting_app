@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gifting_app/filter_algo/filter.dart';
+import 'package:gifting_app/filter_algo/mockvalues.dart';
 import 'package:gifting_app/home/select_your_details.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -9,6 +11,7 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MockValues mockValues;
     return Scaffold(
       body: Container(
         color: Colors.pink[200],
@@ -27,12 +30,13 @@ class StartScreen extends StatelessWidget {
                 highlightColor: Colors.red[100],
                 customBorder: const CircleBorder(side: BorderSide.none),
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Filter().generateMockValues();
+                  /* Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const Intro(),
                     ),
-                  );
+                  ); */
                 },
                 child: Center(
                   child: GlowText(
