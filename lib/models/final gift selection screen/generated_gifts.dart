@@ -16,7 +16,9 @@ class GeneratedGiftsScreen extends StatefulWidget {
 class _GeneratedGiftsScreenState extends State<GeneratedGiftsScreen> {
   @override
   Widget build(BuildContext context) {
+    // Create instance of filter just to access the filterValues() function
     Filter filter = Filter();
+    // Create an exportable based on provider
     Exportable finalized = Exportable(
       Provider.of<Exportable>(context).budget,
       Provider.of<Exportable>(context).ageMinimum,
@@ -25,7 +27,17 @@ class _GeneratedGiftsScreenState extends State<GeneratedGiftsScreen> {
       Provider.of<Exportable>(context).occasion,
       Provider.of<Exportable>(context).shopLocal,
     );
-    List<MockValues> items = filter.filterValues(finalized);
+    // Filter through Mock gift items to only access the ones needed
+    List<MockValues> filtered = filter.filterValues(finalized);
+    // Next line is just for list view
+    List<Widget> items = [];
+    // Add filtered items to listview
+    for (var i = 0; i < filtered.length; i++) {
+      items.add(
+        exportableObject(filtered[i], context),
+      );
+    }
+    print(items.length);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize:
@@ -34,7 +46,24 @@ class _GeneratedGiftsScreenState extends State<GeneratedGiftsScreen> {
           title: widget.title,
         ),
       ),
-      body: Container(),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height*0.85,
+          child: ListView(
+            shrinkWrap: true,
+            children: items,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget exportableObject(MockValues mockValue, BuildContext context) {
+    return ListTile(
+      title: const Text("Generated Product"),
+      subtitle: Text("${mockValue.price}"),
+      trailing: Text("${mockValue.occasion} " "present"),
+      leading: Image.asset("assets/images/giftbox.jpg"),
     );
   }
 }

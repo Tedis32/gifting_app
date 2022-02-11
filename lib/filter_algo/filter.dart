@@ -75,7 +75,7 @@ class Filter {
 
     generateMockValues();
     for (var i = 0; i < mockValues.length; i++) {
-      if (mockValues[i].price <= exportable.budget && mockValues[i].gender == exportable.gender) {
+      if (mockValues[i].price <= exportable.budget && mockValues[i].gender == exportable.gender && mockValues[i].occasion == exportable.occasion) {
         filtered.add(mockValues[i]);
         print(
           mockValues[i].price.toString() + "\t" +
