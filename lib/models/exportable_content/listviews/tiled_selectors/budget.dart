@@ -4,6 +4,7 @@ import 'package:gifting_app/exportable.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
 import 'package:gifting_app/models/exportable_content/clickables/budgetbutton.dart';
+import 'package:gifting_app/models/exportable_content/intermediary_screens/select_their_details.dart';
 import 'package:gifting_app/models/exportable_content/intermediary_screens/support_local.dart';
 import 'package:gifting_app/models/exportable_content/listviews/agepicker.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
@@ -134,10 +135,8 @@ class _BudgetListState extends State<BudgetList> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const SupportLocal(
-                                    title: "Would you prefer to shop locally?",
-                                  ),
-                                ),
+                                    builder: (context) =>
+                                        const SelectTheirDetails()),
                               );
                             }
                           },

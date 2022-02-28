@@ -4,6 +4,8 @@ import 'package:gifting_app/home/start_screen.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
 import 'package:provider/provider.dart';
 
+import 'home/home.dart';
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -26,7 +28,7 @@ class App extends StatelessWidget {
                 button: TextStyle(color: Colors.black)),
           ),
           debugShowCheckedModeBanner: false,
-          home: const StartScreen()),
+          home: const Home(title: "Home")),
     );
   }
 }

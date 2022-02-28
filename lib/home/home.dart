@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_glow/flutter_glow.dart';
+import 'package:gifting_app/home/gift_search_screen.dart';
 import 'package:gifting_app/home/select_your_details.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/drawer.dart';
@@ -30,21 +33,6 @@ class _HomeState extends State<Home> {
     TextEditingController searchController = TextEditingController();
 
     return Scaffold(
-      /* bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black87,
-        selectedItemColor: Colors.red[300],
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Gifting',
-          ),
-        ],
-      ), */
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize:
@@ -59,13 +47,14 @@ class _HomeState extends State<Home> {
           decoration: const BoxDecoration(
             //Background image edit
             image: DecorationImage(
-              image: AssetImage('assets/images/background.png'),
+              image: AssetImage('assets/images/background_3.png'),
               fit: BoxFit.cover,
             ),
           ),
           child: Stack(
+            alignment: Alignment.center,
             children: [
-              // Search bar
+              /* // Search bar
               Positioned(
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.06,
@@ -102,54 +91,73 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-              ),
+              ), */
 
               //First text
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.32,
-                left: MediaQuery.of(context).size.width * 0.1,
+                top: MediaQuery.of(context).size.height * 0.2,
                 child: Text(
-                  "Search users and gifts!",
+                  "Welcome to [name_insert]!",
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.alata(
                     textStyle:
-                        const TextStyle(color: Colors.black87, fontSize: 19),
+                        const TextStyle(color: Colors.white, fontSize: 22),
                   ),
                 ),
               ),
 
               //Second Text
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.50,
-                right: MediaQuery.of(context).size.width * 0.09,
+                top: MediaQuery.of(context).size.height * 0.33,
                 child: Text(
-                  "Or simply let our algorithm \nhelp you find a gift!",
+                  "Click below to get started!",
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.alata(
-                    textStyle:
-                        const TextStyle(color: Colors.black87, fontSize: 19),
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 19,
+                    ),
                   ),
                 ),
               ),
+
               //Button
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.83,
-                right: MediaQuery.of(context).size.width * 0.1,
-                child: DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: Colors.black87,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                      color: Colors.white,
-                      splashRadius: 10,
-                      iconSize: 40,
-                      icon: const Icon(Icons.arrow_forward_rounded),
-                      onPressed: () {
+                top: MediaQuery.of(context).size.height * 0.45,
+                child: DottedBorder(
+                  color: Colors.white,
+                  strokeCap: StrokeCap.butt,
+                  strokeWidth: 9,
+                  borderType: BorderType.Circle,
+                  dashPattern: const [3, 5],
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: InkWell(
+                      highlightColor: Colors.red[100],
+                      customBorder: const CircleBorder(side: BorderSide.none),
+                      onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const Intro(),
-                            ));
-                      }),
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const GiftSearch(),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: GlowText(
+                          "START",
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.w300,
+                          ),
+                          glowColor: Colors.yellow[200],
+                          blurRadius: 15,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
