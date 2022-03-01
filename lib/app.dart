@@ -20,15 +20,22 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-          theme: ThemeData(
-            canvasColor: Colors.pink[200],
-            primaryTextTheme: const TextTheme(
-                bodyText1: TextStyle(color: Colors.black),
-                bodyText2: TextStyle(color: Colors.black),
-                button: TextStyle(color: Colors.black)),
-          ),
-          debugShowCheckedModeBanner: false,
-          home: const Home(title: "Home")),
+        routes: {
+          '/home': (context) => const Home(
+                title: "Home",
+              ),
+        },
+        initialRoute: '/home',
+        theme: ThemeData(
+          canvasColor: Colors.pink[200],
+          primaryTextTheme: const TextTheme(
+              bodyText1: TextStyle(color: Colors.black),
+              bodyText2: TextStyle(color: Colors.black),
+              button: TextStyle(color: Colors.black)),
+        ),
+        debugShowCheckedModeBanner: false,
+        
+      ),
     );
   }
 }

@@ -15,14 +15,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
       elevation: 0,
-      automaticallyImplyLeading: false,
+      backgroundColor: Colors.indigo[300],
       iconTheme: const IconThemeData(color: Colors.black),
       title: Center(
         child: Text(
           widget.title,
-          style: GoogleFonts.alata(color: Colors.white),
+          style: GoogleFonts.ubuntu(color: Colors.white),
         ),
       ),
     );

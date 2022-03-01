@@ -31,12 +31,16 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
+    @override
+    void initState() {
+      super.initState();
+    }
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.09),
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.05),
         child: CustomAppBar(
           title: widget.title,
         ),
@@ -93,7 +97,7 @@ class _HomeState extends State<Home> {
                 ),
               ), */
 
-              //First text
+              /* //First text
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.2,
                 child: Text(
@@ -104,13 +108,13 @@ class _HomeState extends State<Home> {
                         const TextStyle(color: Colors.white, fontSize: 22),
                   ),
                 ),
-              ),
+              ), */
 
               //Second Text
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.33,
                 child: Text(
-                  "Click below to get started!",
+                  "Click below to use the\n advanced gift generator",
                   textAlign: TextAlign.center,
                   style: GoogleFonts.alata(
                     textStyle: const TextStyle(
@@ -123,7 +127,7 @@ class _HomeState extends State<Home> {
 
               //Button
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.45,
+                top: MediaQuery.of(context).size.height * 0.4,
                 child: DottedBorder(
                   color: Colors.white,
                   strokeCap: StrokeCap.butt,
@@ -140,7 +144,7 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const GiftSearch(),
+                            builder: (context) => const Intro(),
                           ),
                         );
                       },

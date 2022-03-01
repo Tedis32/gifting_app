@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gifting_app/filter_algo/filter.dart';
 import 'package:gifting_app/filter_algo/mockvalues.dart';
+import 'package:gifting_app/home/home.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,12 @@ class GeneratedGiftsScreen extends StatefulWidget {
 }
 
 class _GeneratedGiftsScreenState extends State<GeneratedGiftsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Create instance of filter just to access the filterValues() function
@@ -47,12 +54,30 @@ class _GeneratedGiftsScreenState extends State<GeneratedGiftsScreen> {
         ),
       ),
       body: SingleChildScrollView(
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height*0.85,
-          child: ListView(
-            shrinkWrap: true,
-            children: items,
-          ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 1,
+                child: ListView(
+                  shrinkWrap: true,
+                  children: items,
+                ),
+              ),
+            ),
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.81,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).popUntil(
+                    ModalRoute.withName('/home'),
+                  );
+                },
+                child: Text("Try again?"),
+              ),
+            ),
+          ],
         ),
       ),
     );
