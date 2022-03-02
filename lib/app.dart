@@ -6,6 +6,12 @@ import 'package:provider/provider.dart';
 
 import 'home/home.dart';
 
+// Some globals to make life easier
+
+double appBarHeight = 0.05;
+double getAppbarHeight(BuildContext context) {
+  return MediaQuery.of(context).size.height * appBarHeight;
+}
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -21,11 +27,11 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         routes: {
-          '/home': (context) => const Home(
+          '/': (BuildContext context) => const Home(
                 title: "Home",
               ),
         },
-        initialRoute: '/home',
+        initialRoute: '/',
         theme: ThemeData(
           canvasColor: Colors.pink[200],
           primaryTextTheme: const TextTheme(

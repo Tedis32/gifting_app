@@ -70,11 +70,10 @@ class _GeneratedGiftsScreenState extends State<GeneratedGiftsScreen> {
               top: MediaQuery.of(context).size.height * 0.81,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).popUntil(
-                    ModalRoute.withName('/home'),
-                  );
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '/', (Route<dynamic> route) => false);
                 },
-                child: Text("Try again?"),
+                child: const Text("Try again?"),
               ),
             ),
           ],

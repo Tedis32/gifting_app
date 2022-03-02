@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gifting_app/app.dart';
 import 'package:gifting_app/exportable.dart';
+import 'package:gifting_app/home/gift_search_screen.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
 import 'package:gifting_app/models/exportable_content/clickables/budgetbutton.dart';
@@ -16,10 +18,9 @@ class BudgetList extends StatefulWidget with ChangeNotifier {
   BudgetList({
     Key? key,
     required this.title,
-    required this.numberValue,
+  
   }) : super(key: key);
   String title;
-  String numberValue;
   @override
   _BudgetListState createState() => _BudgetListState();
 }
@@ -27,7 +28,7 @@ class BudgetList extends StatefulWidget with ChangeNotifier {
 class _BudgetListState extends State<BudgetList> {
   @override
   Widget build(BuildContext context) {
-    double appBarHeight = MediaQuery.of(context).size.height * 0.09;
+    
     List<BudgetButton> budgetButtons = [];
     for (var i = 0; i < 12; i++) {
       if (i == 9) {
@@ -51,15 +52,16 @@ class _BudgetListState extends State<BudgetList> {
           return Scaffold(
             extendBodyBehindAppBar: true,
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(appBarHeight),
+              preferredSize: Size.fromHeight(getAppbarHeight(context)),
               child: CustomAppBar(
                 title: widget.title,
               ),
             ),
             body: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height * 1,
                 child: Stack(
+                  alignment: Alignment.center,
                   children: [
                     // Output number
                     //
@@ -69,8 +71,7 @@ class _BudgetListState extends State<BudgetList> {
                       child: SizedBox(
                         child: Text(
                           Provider.of<BudgetProvider>(context, listen: true)
-                              .getValue()
-                              .toString(),
+                              .getValue(),
                           style: GoogleFonts.poppins(
                             color: Colors.black87,
                             fontSize: 40,
@@ -96,7 +97,59 @@ class _BudgetListState extends State<BudgetList> {
                         ),
                       ),
                     ),
-                    // Forward Button
+                    Positioned(
+                      top: MediaQuery.of(context).size.height * 0.83,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (Provider.of<BudgetProvider>(context,
+                                      listen: false)
+                                  .value
+                                  // ignore: unrelated_type_equality_checks
+                                  .isEmpty ||
+                              Provider.of<BudgetProvider>(context,
+                                          listen: false)
+                                      .value ==
+                                  0.toString()) {
+                            Fluttertoast.showToast(
+                                msg: "Please enter your budget",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1);
+                          } else {
+                            Provider.of<Exportable>(context, listen: false)
+                                .budget = int.parse(Provider.of<BudgetProvider>(
+                                    context,
+                                    listen: false)
+                                .value);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    GiftSearch(title: 'Quick Search'),
+                              ),
+                            );
+                          }
+                        },
+                        child: const Text("Confirm Selection"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+// Buttons hidden for now
+
+
+
+
+/* // Forward Button
                     //
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.83,
@@ -149,14 +202,4 @@ class _BudgetListState extends State<BudgetList> {
                       top: MediaQuery.of(context).size.height * 0.83,
                       left: MediaQuery.of(context).size.width * 0.1,
                       child: const CustomBackButton(),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
+                    ), */

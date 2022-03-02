@@ -4,6 +4,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_glow/flutter_glow.dart';
+import 'package:gifting_app/app.dart';
 import 'package:gifting_app/home/gift_search_screen.dart';
 import 'package:gifting_app/home/select_your_details.dart';
 import 'package:gifting_app/models/appbar.dart';
@@ -30,17 +31,14 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController searchController = TextEditingController();
-    @override
-    void initState() {
-      super.initState();
-    }
+/*     TextEditingController searchController = TextEditingController();
+ */
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.05),
+            Size.fromHeight(getAppbarHeight(context)),
         child: CustomAppBar(
           title: widget.title,
         ),
@@ -110,13 +108,13 @@ class _HomeState extends State<Home> {
                 ),
               ), */
 
-              //Second Text
+              //Text
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.33,
+                top: MediaQuery.of(context).size.height * 0.2,
                 child: Text(
-                  "Click below to use the\n advanced gift generator",
+                  "Click below to try\nthe quick generator",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.alata(
+                  style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
                       color: Colors.white,
                       fontSize: 19,
@@ -127,7 +125,7 @@ class _HomeState extends State<Home> {
 
               //Button
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.4,
+                top: MediaQuery.of(context).size.height * 0.35,
                 child: DottedBorder(
                   color: Colors.white,
                   strokeCap: StrokeCap.butt,
@@ -141,10 +139,10 @@ class _HomeState extends State<Home> {
                       highlightColor: Colors.red[100],
                       customBorder: const CircleBorder(side: BorderSide.none),
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Intro(),
+                            builder: (context) => const GiftSearch(title: 'Quick Search'),
                           ),
                         );
                       },
@@ -164,6 +162,21 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+
+              /* // Text 
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.7,
+                child: Text(
+                  "Click below to use the\n advanced gift generator",
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.alata(
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 19,
+                    ),
+                  ),
+                ),
+              ), */
             ],
           ),
         ),

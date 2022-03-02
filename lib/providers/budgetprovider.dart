@@ -7,6 +7,14 @@ class BudgetProvider with ChangeNotifier {
     return value;
   }
 
+  int getValueAsInt() {
+    if (value == "") {
+      return 0;
+    } else {
+      return int.parse(value);
+    }
+  }
+
   void setValue(int newValue) {
     value += newValue.toString();
     notifyListeners();

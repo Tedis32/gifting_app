@@ -26,7 +26,6 @@ class _OccasionTileState extends State<OccasionTile> {
           MaterialPageRoute(
             builder: (context) => BudgetList(
               title: "Enter your budget! (€)",
-              numberValue: "",
             ),
           ),
         );
