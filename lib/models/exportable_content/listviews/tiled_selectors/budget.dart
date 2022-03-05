@@ -10,6 +10,7 @@ import 'package:gifting_app/models/exportable_content/intermediary_screens/selec
 import 'package:gifting_app/models/exportable_content/intermediary_screens/support_local.dart';
 import 'package:gifting_app/models/exportable_content/listviews/agepicker.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
+import 'package:gifting_app/providers/quick_search_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,6 @@ class BudgetList extends StatefulWidget with ChangeNotifier {
   BudgetList({
     Key? key,
     required this.title,
-  
   }) : super(key: key);
   String title;
   @override
@@ -28,7 +28,6 @@ class BudgetList extends StatefulWidget with ChangeNotifier {
 class _BudgetListState extends State<BudgetList> {
   @override
   Widget build(BuildContext context) {
-    
     List<BudgetButton> budgetButtons = [];
     for (var i = 0; i < 12; i++) {
       if (i == 9) {
@@ -100,7 +99,7 @@ class _BudgetListState extends State<BudgetList> {
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.83,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (Provider.of<BudgetProvider>(context,
                                       listen: false)
                                   .value
@@ -116,18 +115,10 @@ class _BudgetListState extends State<BudgetList> {
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1);
                           } else {
-                            Provider.of<Exportable>(context, listen: false)
-                                .budget = int.parse(Provider.of<BudgetProvider>(
-                                    context,
+                            Provider.of<QuickSearchProvider>(context,
                                     listen: false)
-                                .value);
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    GiftSearch(title: 'Quick Search'),
-                              ),
-                            );
+                                .updateTrue(0);
+                            Navigator.pop(context);
                           }
                         },
                         child: const Text("Confirm Selection"),

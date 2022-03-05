@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gifting_app/exportable.dart';
 import 'package:gifting_app/models/exportable_content/listviews/tiled_selectors/budget.dart';
+import 'package:gifting_app/providers/quick_search_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -21,14 +22,16 @@ class _OccasionTileState extends State<OccasionTile> {
       onTap: () {
         Provider.of<Exportable>(context, listen: false).occasion =
             widget.occasion;
-        Navigator.push(
+        Provider.of<QuickSearchProvider>(context, listen: false).updateTrue(1);
+        Navigator.pop(context);
+        /* Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => BudgetList(
               title: "Enter your budget! (€)",
             ),
           ),
-        );
+        ); */
       },
       child: Column(
         children: [

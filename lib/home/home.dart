@@ -44,15 +44,9 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
+        child: SizedBox(
           height: MediaQuery.of(context).size.height * 1,
-          decoration: const BoxDecoration(
-            //Background image edit
-            image: DecorationImage(
-              image: AssetImage('assets/images/background_3.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
+          
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -116,7 +110,7 @@ class _HomeState extends State<Home> {
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 19,
                     ),
                   ),
@@ -127,7 +121,7 @@ class _HomeState extends State<Home> {
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.35,
                 child: DottedBorder(
-                  color: Colors.white,
+                  color: Colors.black54,
                   strokeCap: StrokeCap.butt,
                   strokeWidth: 9,
                   borderType: BorderType.Circle,
@@ -150,7 +144,7 @@ class _HomeState extends State<Home> {
                         child: GlowText(
                           "START",
                           style: GoogleFonts.poppins(
-                            color: Colors.white,
+                            color: Colors.grey,
                             fontSize: 35,
                             fontWeight: FontWeight.w300,
                           ),

@@ -17,7 +17,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     return AppBar(
       elevation: 0,
       automaticallyImplyLeading: true,
-      backgroundColor: Colors.indigo[400],
+      backgroundColor: Colors.black87,
       iconTheme: const IconThemeData(color: Colors.black),
       title:Text(
           widget.title,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gifting_app/exportable.dart';
 import 'package:gifting_app/home/start_screen.dart';
 import 'package:gifting_app/providers/budgetprovider.dart';
+import 'package:gifting_app/providers/quick_search_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'home/home.dart';
@@ -12,6 +13,7 @@ double appBarHeight = 0.05;
 double getAppbarHeight(BuildContext context) {
   return MediaQuery.of(context).size.height * appBarHeight;
 }
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -24,6 +26,9 @@ class App extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => BudgetProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => QuickSearchProvider(),
+        )
       ],
       child: MaterialApp(
         routes: {
@@ -33,14 +38,13 @@ class App extends StatelessWidget {
         },
         initialRoute: '/',
         theme: ThemeData(
-          canvasColor: Colors.pink[200],
+          canvasColor: Colors.white,
           primaryTextTheme: const TextTheme(
               bodyText1: TextStyle(color: Colors.black),
               bodyText2: TextStyle(color: Colors.black),
               button: TextStyle(color: Colors.black)),
         ),
         debugShowCheckedModeBanner: false,
-        
       ),
     );
   }
