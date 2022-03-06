@@ -18,13 +18,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
       elevation: 0,
       automaticallyImplyLeading: true,
       backgroundColor: Colors.black87,
-      iconTheme: const IconThemeData(color: Colors.black),
-      title:Text(
-          widget.title,
-          style: GoogleFonts.ubuntu(color: Colors.white),
-        ),
-      
+      iconTheme: const IconThemeData(color: Colors.white),
+      title: Text(
+        widget.title,
+        style: GoogleFonts.ubuntu(color: Colors.white),
+      ),
     );
   }
-  
 }

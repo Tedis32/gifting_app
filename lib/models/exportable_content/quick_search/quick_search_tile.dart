@@ -27,11 +27,16 @@ class _CriteriaState extends State<Criteria> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
+      padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.06, left: MediaQuery.of(context).size.width*0.1, right: MediaQuery.of(context).size.width*0.1),
       child: Card(
-        shape: const StadiumBorder(side: BorderSide(width: 0.5)),
+        shadowColor: Colors.black,
+        elevation: 20,
+        shape: RoundedRectangleBorder(
+            side: const BorderSide(width: 0.5),
+            borderRadius: BorderRadius.circular(8)),
         color: Colors.white,
         child: ListTile(
+          dense: true,
           leading: Text(
             widget.title,
             style: GoogleFonts.poppins(fontSize: 20, color: Colors.black),
@@ -53,9 +58,7 @@ class _CriteriaState extends State<Criteria> {
                     .searchTileWidgets[widget.index];
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => route
-              ),
+              MaterialPageRoute(builder: (context) => route),
             );
           },
         ),

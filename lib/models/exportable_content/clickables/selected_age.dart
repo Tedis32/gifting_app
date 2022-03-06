@@ -21,7 +21,7 @@ class _SelectedAgeState extends State<SelectedAge> {
           widget.ageValue,
           style: GoogleFonts.poppins(
             fontSize: 30,
-            color: Colors.pink[50]
+            color: Colors.pink[100]
           ),
         ),
       ),

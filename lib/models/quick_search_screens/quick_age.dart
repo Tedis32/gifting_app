@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gifting_app/models/appbar.dart';
 import 'package:gifting_app/models/exportable_content/clickables/backbutton.dart';
+import 'package:gifting_app/models/exportable_content/clickables/quick_clickables.dart/quick_selected_age.dart';
 import 'package:gifting_app/models/exportable_content/clickables/selected_age.dart';
 import 'package:gifting_app/models/exportable_content/listviews/tiled_selectors/gender_selector.dart';
 import 'package:gifting_app/providers/quick_search_provider.dart';
@@ -9,37 +10,41 @@ import 'package:provider/provider.dart';
 import 'package:vertical_picker/vertical_picker.dart';
 
 import '../../../exportable.dart';
+import '../../app.dart';
 
-class AgePicker extends StatefulWidget {
-  const AgePicker({Key? key, required this.title}) : super(key: key);
+class QuickAgePicker extends StatefulWidget {
+  const QuickAgePicker({Key? key, required this.title}) : super(key: key);
   final String title;
   @override
-  _AgePickerState createState() => _AgePickerState();
+  _QuickAgePickerState createState() => _QuickAgePickerState();
 }
 
-class _AgePickerState extends State<AgePicker> {
+class _QuickAgePickerState extends State<QuickAgePicker> {
   String age = "";
   @override
   Widget build(BuildContext context) {
-    List<SelectedAge> items = createChildren();
+    List<QuickSelectedAge> items = createChildren();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
         preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.09),
+            Size.fromHeight(getAppbarHeight(context)),
         child: CustomAppBar(title: widget.title),
       ),
       body: SingleChildScrollView(
         child: SizedBox(
+          height: MediaQuery.of(context).size.height * 1,
           child: Stack(
             alignment: Alignment.center,
             children: [
               Positioned(
+                top: MediaQuery.of(context).size.height * 0.05,
+                height: MediaQuery.of(context).size.height * 0.7,
+                width: MediaQuery.of(context).size.width * 1,
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 1,
                   child: VerticalPicker(
-                    borderColor: Colors.pink[100],
+                    borderColor: Colors.black,
                     onSelectedChanged: (indexSelected) {
                       try {
                         Provider.of<Exportable>(context, listen: false)
@@ -65,49 +70,22 @@ class _AgePickerState extends State<AgePicker> {
                   ),
                 ),
               ),
-              /* Positioned(
-                top: MediaQuery.of(context).size.height * 0.83,
-                right: MediaQuery.of(context).size.width * 0.1,
-                child: DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: Colors.black87,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                      color: Colors.white,
-                      splashRadius: 10,
-                      iconSize: 40,
-                      icon: const Icon(Icons.arrow_forward_rounded),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const GenderSelector(
-                              title: "What is their gender?",
-                            ),
-                          ),
-                        );
-                      }),
-                ),
-              ), */
-              /* Positioned(
-                top: MediaQuery.of(context).size.height * 0.83,
-                left: MediaQuery.of(context).size.height * 0.05,
-                child: const CustomBackButton(),
-              ), */
+
               // Quick search confirmation button
-              Consumer<QuickSearchProvider>(
-                builder: (context, quickSearchProvider, _) => Positioned(
-                  top: MediaQuery.of(context).size.height * 0.83,
-                  child: ElevatedButton(
-                    child: Text("Select Age"),
-                    onPressed: () {
-                      quickSearchProvider.updateTrue(2);
-                      Navigator.pop(context);
-                    },
+               Consumer<QuickSearchProvider>(
+                  builder: (context, quickSearchProvider, _) => Positioned(
+                    top: MediaQuery.of(context).size.height * 0.9,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(primary: Colors.black),
+                      child: Text("Select Age"),
+                      onPressed: () {
+                        quickSearchProvider.updateTrue(2);
+                        Navigator.pop(context);
+                      },
+                    ),
                   ),
                 ),
-              ),
+              
             ],
           ),
         ),
@@ -115,16 +93,16 @@ class _AgePickerState extends State<AgePicker> {
     );
   }
 
-  List<SelectedAge> createChildren() {
-    List<SelectedAge> list = [];
+  List<QuickSelectedAge> createChildren() {
+    List<QuickSelectedAge> list = [];
     int start = 0;
     for (var i = 0; i < 8; i++) {
       i == 7
           ? list.add(
-              SelectedAge(ageValue: start.toString() + " + "),
+              QuickSelectedAge(ageValue: start.toString() + " + "),
             )
           : list.add(
-              SelectedAge(
+              QuickSelectedAge(
                   ageValue:
                       start.toString() + " - " + (start + 10).toString() //,
                   ),

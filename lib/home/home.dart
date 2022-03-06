@@ -121,7 +121,7 @@ class _HomeState extends State<Home> {
               Positioned(
                 top: MediaQuery.of(context).size.height * 0.35,
                 child: DottedBorder(
-                  color: Colors.black54,
+                  color: Colors.black,
                   strokeCap: StrokeCap.butt,
                   strokeWidth: 9,
                   borderType: BorderType.Circle,
@@ -144,12 +144,12 @@ class _HomeState extends State<Home> {
                         child: GlowText(
                           "START",
                           style: GoogleFonts.poppins(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 35,
                             fontWeight: FontWeight.w300,
                           ),
-                          glowColor: Colors.yellow[200],
-                          blurRadius: 15,
+                          glowColor: Colors.grey,
+                          blurRadius: 8,
                         ),
                       ),
                     ),

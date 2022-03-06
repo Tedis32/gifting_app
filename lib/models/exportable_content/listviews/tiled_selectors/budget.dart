@@ -98,31 +98,55 @@ class _BudgetListState extends State<BudgetList> {
                     ),
                     Positioned(
                       top: MediaQuery.of(context).size.height * 0.83,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          if (Provider.of<BudgetProvider>(context,
-                                      listen: false)
-                                  .value
-                                  // ignore: unrelated_type_equality_checks
-                                  .isEmpty ||
-                              Provider.of<BudgetProvider>(context,
+                      right: MediaQuery.of(context).size.width * 0.1,
+                      child: DecoratedBox(
+                        decoration: const BoxDecoration(
+                          color: Colors.black87,
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          color: Colors.white,
+                          splashRadius: 10,
+                          iconSize: 40,
+                          icon: const Icon(Icons.arrow_forward_rounded),
+                          onPressed: () {
+                            if (Provider.of<BudgetProvider>(context,
+                                        listen: false)
+                                    .value
+                                    // ignore: unrelated_type_equality_checks
+                                    .isEmpty ||
+                                Provider.of<BudgetProvider>(context,
+                                            listen: false)
+                                        .value ==
+                                    0.toString()) {
+                              Fluttertoast.showToast(
+                                  msg: "Please enter your budget",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1);
+                            } else {
+                              Provider.of<Exportable>(context, listen: false)
+                                      .budget =
+                                  int.parse(Provider.of<BudgetProvider>(context,
                                           listen: false)
-                                      .value ==
-                                  0.toString()) {
-                            Fluttertoast.showToast(
-                                msg: "Please enter your budget",
-                                toastLength: Toast.LENGTH_SHORT,
-                                gravity: ToastGravity.CENTER,
-                                timeInSecForIosWeb: 1);
-                          } else {
-                            Provider.of<QuickSearchProvider>(context,
-                                    listen: false)
-                                .updateTrue(0);
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: const Text("Confirm Selection"),
+                                      .value);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const SelectTheirDetails()),
+                              );
+                            }
+                          },
+                        ),
                       ),
+                    ),
+                    // Back Button
+                    //
+                    Positioned(
+                      top: MediaQuery.of(context).size.height * 0.83,
+                      left: MediaQuery.of(context).size.width * 0.1,
+                      child: const CustomBackButton(),
                     ),
                   ],
                 ),
